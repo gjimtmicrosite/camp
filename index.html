@@ -10,8 +10,9 @@
 
 body{
 margin:0;
-font-family:Arial;
-background:#f5f5f5;
+padding:0;
+font-family:Arial,sans-serif;
+background:#f3f4f7;
 display:flex;
 justify-content:center;
 align-items:center;
@@ -21,28 +22,61 @@ height:100vh;
 .card{
 background:white;
 padding:30px;
-border-radius:20px;
-box-shadow:0 5px 20px rgba(0,0,0,0.1);
-text-align:center;
+border-radius:25px;
 width:320px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
 }
 
-button{
-background:#0F9D58;
-color:white;
-border:none;
-padding:15px 25px;
-font-size:18px;
-border-radius:12px;
-cursor:pointer;
+.profile{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:12px;
+margin-bottom:20px;
+}
+
+.profile img{
+width:55px;
+height:55px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.profile h2{
+margin:0;
+font-size:32px;
+font-weight:500;
+color:#333;
+}
+
+.qr{
 width:100%;
+border-radius:20px;
+margin-top:10px;
+}
+
+p{
+color:#555;
+font-size:16px;
 margin-top:20px;
 }
 
-img{
-width:220px;
-height:220px;
-margin-top:15px;
+button{
+margin-top:20px;
+width:100%;
+padding:16px;
+font-size:18px;
+border:none;
+border-radius:14px;
+background:#0F9D58;
+color:white;
+cursor:pointer;
+font-weight:bold;
+}
+
+button:hover{
+opacity:0.95;
 }
 
 </style>
@@ -52,24 +86,45 @@ margin-top:15px;
 
 <div class="card">
 
-<h2>Pay ₹1</h2>
+<div class="profile">
 
-<p>Scan QR or click button</p>
+<img src="https://i.imgur.com/6VBx3io.png">
 
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi://pay?pa=jaspreet18aug-1@okaxis&pn=Jaspreet%20Kaur&am=1&cu=INR">
+<h2>Jaspreet Kaur</h2>
 
-<button onclick="payNow()">
-Open UPI App
+</div>
+
+<img class="qr"
+src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=upi://pay?pa=jaspreet18aug-1@okaxis&pn=Jaspreet%20Kaur&am=1&cu=INR">
+
+<p>
+Scan to pay ₹1 with any UPI app
+</p>
+
+<button onclick="openUPI()">
+Open Google Pay
 </button>
 
 </div>
 
 <script>
 
-function payNow(){
+function openUPI(){
 
-window.location.href =
+const upi =
 "upi://pay?pa=jaspreet18aug-1@okaxis&pn=Jaspreet%20Kaur&am=1&cu=INR";
+
+window.location.href = upi;
+
+}
+
+window.onload = function(){
+
+setTimeout(function(){
+
+openUPI();
+
+},1000);
 
 }
 
